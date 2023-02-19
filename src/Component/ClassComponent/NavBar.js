@@ -1,20 +1,29 @@
-import CartWidget from '../CartWidget/CartWidget';
-import ItemListContainer from '../ItemListContainer/ItemListContainer';
+import { Link , NavLink} from "react-router-dom";
+import CartWidget from "../CartWidget/CartWidget";
+import "./style.css";
 
-export default function NavBar(){
+const NavBar = () => {
         return (
         
-            <nav className="list">
-                <ul>
-                    <li><a href="#">SALES!</a></li>
-                    <li><a href="#">NIÑOS</a></li>
-                    <li><a href="#">HOMBRE</a></li>
-                    <li><a href="#">MUJER</a></li>
-                </ul>
+            
+       <div className="navbar">
+            <div>
+            <img alt="logo" src="/img/imagen.png" width={"140px"}/>
+            </div>
+            <div className="list">
+                        <ul>
+                            <li><NavLink className={({ isActive }) => isActive ? 'active' : 'inactive'} to="/">Todos</NavLink></li>
+                            <li><NavLink className={({ isActive }) => isActive ? 'active' : 'inactive'} to="/category/summer">Summer</NavLink></li>
+                            <li><NavLink className={({ isActive }) => isActive ? 'active' : 'inactive'} to="/category/winter">Winter</NavLink></li>
+                            <li><NavLink className={({ isActive }) => isActive ? 'active' : 'inactive'} to="/category/spring">Spring</NavLink></li>
+                        </ul>
+
+            </div>
             <CartWidget/>
-            </nav>
+        </div>
         
         );
-    }
+    };
 
 
+export default NavBar;

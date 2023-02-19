@@ -1,19 +1,19 @@
-import { Component } from 'react';
-import logocarrito from '../CartWidget/carrito.png';
+import "./style.css";
 
-class CartWidget extends Component {
-    render() {
+const CartWidget = () => {
+     
         return (
-        <div className='carro'>
-           <h1 className='textocarro'>01</h1>
-           <img clasName='logocar' src={logocarrito}/>
+        <div className="carritonav" >
+           
+          <img className="carrito" alt="carrito" src="/img/carrito.png"/>
+          <p>01</p>
            
         </div>
         );
     }
-}
+;
 
-export default CartWidget
+export default CartWidget;
 
 
 

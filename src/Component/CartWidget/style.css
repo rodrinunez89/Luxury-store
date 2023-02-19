@@ -1,0 +1,15 @@
+.carrito {
+   display: inline; 
+ width: 50px;
+   display: flex;
+   align-items: center;
+
+  }
+
+  .carritonav{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+  }
+
