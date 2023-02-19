@@ -1,0 +1,11 @@
+.counter {
+
+    background-color: blue;
+}
+
+.constrollers {
+    display: flex;
+    
+    width: 30px;
+    height: 50px;
+}

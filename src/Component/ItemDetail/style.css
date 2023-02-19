@@ -5,6 +5,7 @@
   border-radius: 10px;
   border: 2px solid white;
   overflow: hidden;
+  flex-direction: column;
   
 }
 .detailtext {
