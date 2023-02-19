@@ -1,4 +1,5 @@
-import "./style.css";
+import Button from 'react-bootstrap/Button';
+import "./ItemCount.scss";
 
 
 const ItemCount = ({count , setCount}) => {
@@ -15,11 +16,11 @@ const ItemCount = ({count , setCount}) => {
   return (
     <div className="counter">
         <div className="constrollers">
-            <button onClick={restar}>-</button>
+            <Button variant="outline-secondary" onClick={restar}>-</Button>
             <div>
                  <span>{count}</span>
             </div>
-            <button onClick={onAdd}>+</button>
+            <Button variant="outline-secondary" onClick={onAdd}>+</Button>
         </div>
     </div>
   )
