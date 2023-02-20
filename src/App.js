@@ -5,9 +5,13 @@ import ItemListContainer from './Component/pages/ItemListContainer/ItemListConta
 import ItemDetailContainer from './Component/pages/ItemListContainer/ItemDetailContainer/ItemDetailContainer';
 import Cart from './Component/pages/Cart/Cart';
 import Footer from './Component/Footer/Footer';
+import { useEffect } from 'react';
 
 
 function App() {
+  useEffect(() => {
+    document.title = 'Luxury Store'
+  }, [])
   return (
     <BrowserRouter>
       <NavBar />
