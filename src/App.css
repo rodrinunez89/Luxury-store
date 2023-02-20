@@ -48,15 +48,17 @@ a{
   list-style: none;
   transition: all 0.5s ease 0s;
 
-  font-size: 25px;
+  font-size: 20px;
 
 }
 
 .list li a:hover {
 
   background-color: #107cdbeb;
-  border-radius: 20px;
+  border-radius: 40px;
   margin: 10%;
+padding: 10px;
+color: white;;
 
 
 
