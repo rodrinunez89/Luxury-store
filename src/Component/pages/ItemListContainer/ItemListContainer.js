@@ -7,7 +7,7 @@ import "./ItemListContainer.scss";
 const ItemListContainer = ({ greeting }) => {
   const [productList, setProductList] = useState([]);
   const { categoryId } = useParams();
-  console.log(categoryId);
+
 
   const getProducts = new Promise((res, rej) => {
     if (categoryId) {
