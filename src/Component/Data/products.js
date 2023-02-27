@@ -5,7 +5,7 @@ export const products = [
    price: '7000 $',
    description: 'Conjunto de verano',
    img: '/img/image1.jpeg',
-   quantity: 8,
+   stock: 8,
    category: 'summer',
 },
 {
@@ -14,7 +14,7 @@ export const products = [
     price: '7000 $',
     description: 'Conjunto de verano',
     img: '/img/image2.jpeg',
-    quantity: 15,
+    stock: 15,
     category: 'summer',
 
  },
@@ -24,7 +24,7 @@ export const products = [
     price: '7000 $',
     description: 'Conjunto de primavera',
     img: '/img/image3.jpeg',
-    quantity: 20,
+    stock: 20,
     category: 'spring',
  },
  {
@@ -33,7 +33,7 @@ export const products = [
     price: '7000 $',
     description: 'Conjunto de primavera',
     img: '/img/image4.jpeg',
-    quantity: 10,
+    stock: 10,
     category: 'spring',
 
  },
@@ -43,7 +43,7 @@ export const products = [
     price: '7000 $',
     description: 'Conjunto de invierno',
     img: '/img/image5.jpeg',
-    quantity: 4,
+    stock: 4,
     category: 'winter',
  },
  {
@@ -52,7 +52,7 @@ export const products = [
     price: '7000 $',
     description: 'Conjunto de invierno',
     img: '/img/image6.jpeg',
-    quantity: 7,
+    stock: 7,
     category: 'winter',
  },
 
