@@ -37,7 +37,7 @@ if(isInCart(item.id)){
   };
 
 const removeItem = (productId) => {
-    setCart(cart.filter((product) => product.id !== product.Id))
+    setCart(cart.filter((product) => product.id !== productId))
 };
 
 const isInCart = (productId) => {
@@ -50,7 +50,7 @@ const isInCart = (productId) => {
 
 
     return( 
-    <CartContext.Provider value={{cart, addItem , clear ,removeItem , }}>{children}</CartContext.Provider>);
+    <CartContext.Provider value={{cart, addItem , clear ,removeItem}}>{children}</CartContext.Provider>);
 };
 
 export default CartProvider;

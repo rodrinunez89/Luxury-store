@@ -7,6 +7,7 @@ import Cart from './Component/pages/Cart/Cart';
 import Footer from './Component/Footer/Footer';
 import { useEffect } from 'react';
 import CartProvider from './Component/context/CartProvider';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   useEffect(() => {
