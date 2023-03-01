@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import CartProvider from './Component/context/CartProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 function App() {
   useEffect(() => {
     document.title = 'Luxury Store'

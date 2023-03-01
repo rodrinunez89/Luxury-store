@@ -6,10 +6,14 @@ import Button from 'react-bootstrap/Button';
 import "./ItemDetail.scss";
 import { CartContext } from "../context/CartContext";
 
+
+
+
 const ItemDetail = ({ detail }) => {
   const navigate = useNavigate();
   const {addItem} = useContext(CartContext);
   const [count, setCount] = useState(1);
+ 
 
 
   return (
@@ -33,3 +37,4 @@ const ItemDetail = ({ detail }) => {
 }
 
 export default ItemDetail;
+

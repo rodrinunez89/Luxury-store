@@ -46,4 +46,19 @@
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
    
+    display: flex;
+    align-items: center;
+    border-radius: 10px;   
+    
+
 }
+
+.titulo{
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    background-color: #F6F6F6;
+height: 90px;
+align-items: center;
+}
+
