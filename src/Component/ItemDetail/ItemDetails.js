@@ -27,7 +27,7 @@ const ItemDetail = ({ detail }) => {
         <p>{detail.description}</p>
         <h2>{detail.price}</h2>
         <ItemCount count={count} setCount={setCount} />
-        <Button variant="outline-secondary" onClick={() => addItem (detail , count)}>Agregar al Carrito</Button>
+        <Button disabled={count > detail.stock ? true:false} variant="outline-secondary" onClick={() => addItem (detail , count)}>Agregar al Carrito</Button>
         <Button variant="outline-secondary" onClick={() => navigate('/')}>Seguir Comprando</Button>
         <Button variant="outline-secondary" onClick={() => navigate('/cart')}>Terminar Compra</Button>
         </div>

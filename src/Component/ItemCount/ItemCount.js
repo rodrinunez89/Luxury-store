@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import "./ItemCount.scss";
 
 
-const ItemCount = ({count , setCount}) => {
+const ItemCount = ({count , setCount }) => {
     
     const onAdd = () => {
     setCount (count + 1);
