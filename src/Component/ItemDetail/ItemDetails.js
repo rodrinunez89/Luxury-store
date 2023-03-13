@@ -20,12 +20,12 @@ const ItemDetail = ({ detail }) => {
     <div className="detailproduct">
       <div className="detailtext">
         <div className="col">
-        <img className="imglist" alt={detail.nameproduct} src={detail.img} width="200px" />
+        <img className="imglist" alt={detail.nameproduct} src={`/img/${detail.img}`} width="200px" />
         </div>
         <div className="col col--text">
         <h1>{detail.nameproduct}</h1>
         <p>{detail.description}</p>
-        <h2>{detail.price}</h2>
+        <h2>$ {detail.price}</h2>
         <ItemCount count={count} setCount={setCount} />
         <Button disabled={count > detail.stock ? true:false} variant="outline-secondary" onClick={() => addItem (detail , count)}>Agregar al Carrito</Button>
         <Button variant="outline-secondary" onClick={() => navigate('/')}>Seguir Comprando</Button>
