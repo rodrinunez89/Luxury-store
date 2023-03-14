@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, addDoc, getFirestore , doc, updateDoc } from "firebase/firestore";
 
  const Cart = () => {
- const {cart, clear , removeItem} = useContext (CartContext);
+ const {cart, clear , removeItem , total} = useContext (CartContext);
  const navigate = useNavigate();
  const db = getFirestore();
 
@@ -36,7 +36,7 @@ import { collection, addDoc, getFirestore , doc, updateDoc } from "firebase/fire
   
     }
   } ),
-  total: cart.reduce((acum, actu) => acum + actu.price * actu.quantity , 0)
+  total: total,
   })
   .then((response) => {
     console.log(response.id);
@@ -82,7 +82,7 @@ const updateStocks = () => {
                         <p>Ahora 3 Y 6</p>
                 
                     </div>
-              </div>};
+              </div>}
      
     
         {cart.map((product) => (
@@ -93,18 +93,29 @@ const updateStocks = () => {
             <p>{product.quantity}</p>
             <img className="listproductbuy-img" src={`/img/${product.img}`}  alt={product.nameproduct}></img>
             <Button className="botones" variant="danger" onClick={()=> removeItem(product.id)}>X</Button>
+      
       </div>
       
-      
-    )
-    
+      )
+     
     )}
+      <div></div>
       {/* {cart.reduce ((acc, curr) => acc + curr.price * curr.quantity, 0)} */}
-      {cart.length  >0 && <Button className="botones" variant="danger" onClick={clear}>Vaciar Carrito</Button>}
-      {cart.length  === 0 && <h1 className="titulo"> NO HAY PRODUCTOS EN EL CARRITO</h1>}
-      {cart.length  === 0 && <Button className="botones" variant="primary" onClick={() => navigate('/')}>Volver a comprar</Button>}
-      <Button className="botones" variant="primary" onClick={createOrder}>Completar Compra</Button>
-      <Button className="botones" variant="primary" onClick={() => navigate('/')}>Seguir Comprando</Button>
+      {cart.length  >0 && <div>
+        <h1> TOTAL: $ {total}</h1>
+        <Button className="botones" variant="danger" onClick={clear}>Vaciar Carrito</Button>
+        <Button className="botones" variant="primary" onClick={createOrder}>Completar Compra</Button>
+        <Button className="botones" variant="primary" onClick={() => navigate('/')}>Seguir Comprando</Button>
+        
+        </div>}
+      {cart.length  === 0 && <div> 
+        <h1 className="titulo"> NO HAY PRODUCTOS EN EL CARRITO</h1>
+        <Button className="botones" variant="primary" onClick={() => navigate('/')}>Volver a comprar</Button>
+                            </div>}
+      
+      
+     
+    
     </div>
   );
 };
