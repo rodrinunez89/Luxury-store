@@ -89,8 +89,9 @@ const updateStocks = () => {
       <div className="listproductbuy" key={product.nameproduct}>
             <h2>{product.nameproduct}</h2>
             <p>{product.description}</p>
-            <p>{product.price}</p>
-            <p>{product.quantity}</p>
+            <p>Precio Unitario: {product.price}</p>
+            <p>Cantidad: {product.quantity}</p>
+            
             <img className="listproductbuy-img" src={`/img/${product.img}`}  alt={product.nameproduct}></img>
             <Button className="botones" variant="danger" onClick={()=> removeItem(product.id)}>X</Button>
       
