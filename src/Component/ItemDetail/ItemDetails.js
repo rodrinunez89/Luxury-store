@@ -12,7 +12,7 @@ import { CartContext } from "../context/CartContext";
 const ItemDetail = ({ detail }) => {
   const navigate = useNavigate();
   const {addItem} = useContext(CartContext);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState( detail?.stock === 0 ? 0 : 1);
  
 
 

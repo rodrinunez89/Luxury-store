@@ -3,10 +3,65 @@ import { CartContext } from "../../context/CartContext";
 import './listproductbuy.scss';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
+import { collection, addDoc, getFirestore , doc, updateDoc } from "firebase/firestore";
 
  const Cart = () => {
  const {cart, clear , removeItem} = useContext (CartContext);
  const navigate = useNavigate();
+ const db = getFirestore();
+
+ const createOrder = (event) => {
+  event.preventDefault();
+  
+  const querySnapshot = collection (db, 'orders');
+  
+  
+
+  addDoc (querySnapshot, {
+    
+   buyer : {
+    email: 'hola@email.com',
+    name: 'John', 
+    phone: '+5411112312',
+  },
+
+
+
+  products : cart.map((product) => {
+    return {
+      nameproduct : product.nameproduct,
+      price : product.price,
+      id: product.id,
+      quantity: product.quantity,
+  
+    }
+  } ),
+  total: cart.reduce((acum, actu) => acum + actu.price * actu.quantity , 0)
+  })
+  .then((response) => {
+    console.log(response.id);
+    alert(`Muchas gracias por tu compra, bajo el numero de orden, ID: ${response.id}`);
+    updateStocks();
+  })
+
+  .catch((error) => console.log(error));
+ };
+const updateStocks = () => {
+  cart.forEach((product)=> {
+    const querySnapshot = doc(db, 'products', product.id);
+
+    updateDoc(querySnapshot, {
+      stock: product.stock - product.quantity,
+  })
+  .then(()=>{
+    alert ('El stock a sido actualizado');
+  } )
+  .catch((error)=> console.log (error))
+  })
+};
+
+
+
   return ( 
     <div>
             {cart.length  >0 && 
@@ -36,7 +91,7 @@ import { useNavigate } from "react-router-dom";
             <p>{product.description}</p>
             <p>{product.price}</p>
             <p>{product.quantity}</p>
-            <img className="listproductbuy-img" src={product.img} alt={product.nameproduct}></img>
+            <img className="listproductbuy-img" src={`/img/${product.img}`}  alt={product.nameproduct}></img>
             <Button className="botones" variant="danger" onClick={()=> removeItem(product.id)}>X</Button>
       </div>
       
@@ -48,6 +103,8 @@ import { useNavigate } from "react-router-dom";
       {cart.length  >0 && <Button className="botones" variant="danger" onClick={clear}>Vaciar Carrito</Button>}
       {cart.length  === 0 && <h1 className="titulo"> NO HAY PRODUCTOS EN EL CARRITO</h1>}
       {cart.length  === 0 && <Button className="botones" variant="primary" onClick={() => navigate('/')}>Volver a comprar</Button>}
+      <Button className="botones" variant="primary" onClick={createOrder}>Completar Compra</Button>
+      <Button className="botones" variant="primary" onClick={() => navigate('/')}>Seguir Comprando</Button>
     </div>
   );
 };
