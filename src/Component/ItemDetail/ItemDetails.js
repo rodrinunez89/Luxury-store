@@ -1,6 +1,6 @@
 
 import ItemCount from "../ItemCount/ItemCount";
-import { useState , useContext } from "react";
+import { useState , useContext , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import "./ItemDetail.scss";
@@ -12,8 +12,12 @@ import { CartContext } from "../context/CartContext";
 const ItemDetail = ({ detail }) => {
   const navigate = useNavigate();
   const {addItem} = useContext(CartContext);
-  const [count, setCount] = useState( detail?.stock === 0 ? 0 : 1);
+  const [count, setCount] = useState(1);
  
+useEffect(()=>{
+  setCount(detail?.stock === 0 ? 0 : 1)
+  // eslint-disable-next-line
+},[])
 
 
   return (

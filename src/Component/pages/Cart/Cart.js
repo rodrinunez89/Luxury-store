@@ -89,7 +89,7 @@ const updateStocks = () => {
      
     
         {cart.map((product) => (
-      <div className="listproductbuy" key={product.nameproduct}>
+      <div className="listproductbuy" key={product.id}>
         <ItemCart product={product}/>
         <Button className="botones" variant="danger" onClick={()=> removeItem(product.id)}>X</Button>
       
