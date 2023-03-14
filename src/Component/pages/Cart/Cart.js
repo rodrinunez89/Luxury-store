@@ -1,13 +1,16 @@
-import { useContext } from "react"; 
+import { useContext} from "react"; 
 import { CartContext } from "../../context/CartContext";
 import './listproductbuy.scss';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc, getFirestore , doc, updateDoc } from "firebase/firestore";
 
+import ItemCart from "./ItemCart";
+
  const Cart = () => {
  const {cart, clear , removeItem , total} = useContext (CartContext);
  const navigate = useNavigate();
+
  const db = getFirestore();
 
  const createOrder = (event) => {
@@ -87,13 +90,8 @@ const updateStocks = () => {
     
         {cart.map((product) => (
       <div className="listproductbuy" key={product.nameproduct}>
-            <h2>{product.nameproduct}</h2>
-            <p>{product.description}</p>
-            <p>Precio Unitario: {product.price}</p>
-            <p>Cantidad: {product.quantity}</p>
-            
-            <img className="listproductbuy-img" src={`/img/${product.img}`}  alt={product.nameproduct}></img>
-            <Button className="botones" variant="danger" onClick={()=> removeItem(product.id)}>X</Button>
+        <ItemCart product={product}/>
+        <Button className="botones" variant="danger" onClick={()=> removeItem(product.id)}>X</Button>
       
       </div>
       
