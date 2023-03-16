@@ -29,6 +29,7 @@ useEffect(()=>{
         <div className="col col--text">
         <h1>{detail.nameproduct}</h1>
         <p>{detail.description}</p>
+        <p>Stock: {detail.stock} u</p>
         <h2>$ {detail.price}</h2>
         <ItemCount count={count} setCount={setCount} />
         <Button disabled={count > detail.stock ? true:false} variant="outline-secondary" onClick={() => addItem (detail , count)}>Agregar al Carrito</Button>

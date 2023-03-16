@@ -80,7 +80,7 @@ const ingrestext =(event)=> {
  };
 
   return ( 
-    <div>
+    <div className="prueba">
             {cart.length  >0 && 
               <div> <h1>- Carrito -</h1>
                     <div className="listproduct-description">
@@ -104,38 +104,30 @@ const ingrestext =(event)=> {
     
         {cart.map((product) => (
       <div className="listproductbuy" key={product.id}>
-        <ItemCart product={product}/>
-        <Button className="botones" variant="danger" onClick={()=> removeItem(product.id)}>X</Button>
-      
+          <ItemCart product={product}/>
+          <Button className="botones" variant="danger" onClick={()=> removeItem(product.id)}>X</Button>
       </div>
-      
-      )
-     
-    )};
-
-
-
-      <div>
-      <div className="contact">
-          <form className="contact__form">
-            
-            <input type="text" name='name' placeholder="Su Nombre" value={formValue.name} onChange={ingrestext}/>
-            <input type="email" name='email' placeholder="Su Email" value={formValue.email} onChange={ingrestext} />
-            <input type="text" name='phone' placeholder="Teléfono" value={formValue.phone}onChange={ingrestext}/>
-          
-            <Button className="botones" variant="primary" onClick={createOrder}>Completar Compra</Button>
-          </form>
-        </div>
-      </div>
-      {/* {cart.reduce ((acc, curr) => acc + curr.price * curr.quantity, 0)} */}
-      {cart.length  >0 && <div>
+      ))}
+  
+      {cart.length  >0 && <><div className="formcompra">
         <h1> TOTAL: $ {total}</h1>
 
-        <Button className="botones" variant="danger" onClick={clear}>Vaciar Carrito</Button>
-        
-        <Button className="botones" variant="primary" onClick={() => navigate('/')}>Seguir Comprando</Button>
-        
+        <div className="contact">
+          <form className="contact__form">
+
+            <input type="text" name='name' placeholder="Su Nombre" value={formValue.name} onChange={ingrestext} />
+            <input type="text" name='email' placeholder="Su Email" value={formValue.email} onChange={ingrestext} />
+            <input type="text" name='phone' placeholder="Teléfono" value={formValue.phone} onChange={ingrestext} />
+            <Button className="botones" variant="primary" onClick={createOrder}>Completar Compra</Button>
+
+          </form>
         </div>
+      </div><div>
+          <Button className="botones" variant="danger" onClick={clear}>Vaciar Carrito</Button>
+
+          <Button className="botones" variant="primary" onClick={() => navigate('/')}>Seguir Comprando</Button>
+
+        </div></>
         }
       {cart.length  === 0 && <div> 
         <h1 className="titulo"> NO HAY PRODUCTOS EN EL CARRITO</h1>

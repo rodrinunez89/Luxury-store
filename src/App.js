@@ -10,6 +10,7 @@ import CartProvider from './Component/context/CartProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 function App() {
   useEffect(() => {
     document.title = 'Luxury Store'
@@ -23,7 +24,8 @@ function App() {
         <Route path='/item/:id' element={<ItemDetailContainer />} />
         <Route path='/category/:categoryId' element={<ItemListContainer />} />
         <Route path='/cart' element={<Cart />} />
-      </Routes>
+        
+         </Routes>
       <Footer />
     </CartProvider>
     </BrowserRouter>
