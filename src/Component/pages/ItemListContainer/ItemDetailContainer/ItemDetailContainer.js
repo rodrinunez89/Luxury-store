@@ -25,7 +25,7 @@ getDoc(querySnapshot)
 // eslint-disable-next-line
   useEffect(() => {
    getProduct();
-  }, [])
+  }, [id])
 
   return (
     <div><ItemDetail detail={detailObject} />
