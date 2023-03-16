@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import "./ItemListContainer.scss";
 import { getFirestore, getDocs, collection, query, where } from 'firebase/firestore';
 
+
 const ItemListContainer = () => {
   const [productList, setProductList] = useState([]);
   const { categoryId } = useParams();
@@ -11,24 +12,12 @@ const ItemListContainer = () => {
 
   const getProducts = () => {
     const db = getFirestore();
-    const querySnapshot = collection (db, 'products');
-if (categoryId) {
-  const filteredQuery = query(querySnapshot, where ('category', '==' , categoryId));
+    const queryBase = collection(db, 'products')
+    const querySnapshot = categoryId ?
+     query (queryBase,where('category', '==', categoryId))
+     : queryBase;
 
-  getDocs(filteredQuery)
-  .then((response) => {
-    const list = response.docs.map((doc) => {
-      console.log(doc);
-      return {
-        id: doc.id, 
-        ...doc.data(),
-      };
-    });
-    setProductList(list);
-    console.log(list);
-  })
-  .catch((error) => console.log(error) );
- } else {
+
 getDocs(querySnapshot)
     .then((response) => {
       const list = response.docs.map((doc) => {
@@ -42,7 +31,7 @@ getDocs(querySnapshot)
       console.log(list);
     })
     .catch((error) => console.log(error) );
-  };
+  
 };
 
 
@@ -52,8 +41,8 @@ getDocs(querySnapshot)
 
   useEffect(() => {
     getProducts();
-
-  }, [categoryId])
+//eslint-disable-next-line
+  }, [categoryId]);
 
   return (
 

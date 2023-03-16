@@ -1,4 +1,4 @@
-import { useContext} from "react"; 
+import { useContext, useState} from "react"; 
 import { CartContext } from "../../context/CartContext";
 import './listproductbuy.scss';
 import Button from 'react-bootstrap/Button';
@@ -9,12 +9,18 @@ import ItemCart from "./ItemCart";
 
  const Cart = () => {
  const {cart, clear , removeItem , total} = useContext (CartContext);
+ const [formValue, setFormValue] = useState ({
+  name:'',
+  phone: '',
+  email: '',
+ });
  const navigate = useNavigate();
 
- const db = getFirestore();
+ 
 
  const createOrder = (event) => {
   event.preventDefault();
+  const db = getFirestore();
   
   const querySnapshot = collection (db, 'orders');
   
@@ -23,9 +29,9 @@ import ItemCart from "./ItemCart";
   addDoc (querySnapshot, {
     
    buyer : {
-    email: 'hola@email.com',
-    name: 'John', 
-    phone: '+5411112312',
+    email: formValue.email,
+    name: formValue.name, 
+    phone: formValue.phone,
   },
 
 
@@ -44,12 +50,13 @@ import ItemCart from "./ItemCart";
   .then((response) => {
     console.log(response.id);
     alert(`Muchas gracias por tu compra, bajo el numero de orden, ID: ${response.id}`);
-    updateStocks();
+    updateStocks(db);
   })
 
   .catch((error) => console.log(error));
  };
-const updateStocks = () => {
+const updateStocks = (db) => {
+  
   cart.forEach((product)=> {
     const querySnapshot = doc(db, 'products', product.id);
 
@@ -63,7 +70,14 @@ const updateStocks = () => {
   })
 };
 
-
+const ingrestext =(event)=> {
+  setFormValue ({
+    ...formValue,[
+      event.target.name
+    ]:event.target.value,
+  });
+ 
+ };
 
   return ( 
     <div>
@@ -97,16 +111,32 @@ const updateStocks = () => {
       
       )
      
-    )}
-      <div></div>
+    )};
+
+
+
+      <div>
+      <div className="contact">
+          <form className="contact__form">
+            
+            <input type="text" name='name' placeholder="Su Nombre" value={formValue.name} onChange={ingrestext}/>
+            <input type="email" name='email' placeholder="Su Email" value={formValue.email} onChange={ingrestext} />
+            <input type="text" name='phone' placeholder="Teléfono" value={formValue.phone}onChange={ingrestext}/>
+          
+            <Button className="botones" variant="primary" onClick={createOrder}>Completar Compra</Button>
+          </form>
+        </div>
+      </div>
       {/* {cart.reduce ((acc, curr) => acc + curr.price * curr.quantity, 0)} */}
       {cart.length  >0 && <div>
         <h1> TOTAL: $ {total}</h1>
+
         <Button className="botones" variant="danger" onClick={clear}>Vaciar Carrito</Button>
-        <Button className="botones" variant="primary" onClick={createOrder}>Completar Compra</Button>
+        
         <Button className="botones" variant="primary" onClick={() => navigate('/')}>Seguir Comprando</Button>
         
-        </div>}
+        </div>
+        }
       {cart.length  === 0 && <div> 
         <h1 className="titulo"> NO HAY PRODUCTOS EN EL CARRITO</h1>
         <Button className="botones" variant="primary" onClick={() => navigate('/')}>Volver a comprar</Button>

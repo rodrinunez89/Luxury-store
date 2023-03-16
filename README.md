@@ -1,3 +1,15 @@
+# Tienda de ropa de moda
+
+![Tienda](./public/img/tiendafull.gif)
+
+# Luxury Store
+
+# Librerias que fueron utilizadas
+
+ Bootstrap
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
