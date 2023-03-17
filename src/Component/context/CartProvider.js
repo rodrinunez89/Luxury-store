@@ -1,73 +1,75 @@
 import { CartContext } from "./CartContext";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 
 
-const CartProvider = ({ children}) => {
+const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
-   const [total, setTotal] = useState(0);
+    const [total, setTotal] = useState(0);
 
-   useEffect (() => {
-    setTotal( cart.reduce((acum, actu) => acum + actu.price * actu.quantity , 0))},[cart]);
+    useEffect(() => {
+        setTotal(cart.reduce((acum, actu) => acum + actu.price * actu.quantity, 0))
+    }, [cart]);
 
     const addItem = (item, quantity) => {
-        console.log(isInCart(item.id));
+        
 
-if(isInCart(item.id)){
-    const newCart = cart.map((product) => {
-        if(product.id === item.id){
-            product.quantity = product.quantity + quantity;
-            return product
+        if (isInCart(item.id)) {
+            const newCart = cart.map((product) => {
+                if (product.id === item.id) {
+                    product.quantity = product.quantity + quantity;
+                    return product
+                } else {
+                    return product
+                }
+            })
+            setCart(newCart)
         } else {
-            return product
+            const product = {
+                id: item.id,
+                nameproduct: item.nameproduct,
+                price: item.price,
+                quantity: quantity,
+                description: item.description,
+                img: item.img,
+                stock: item.stock,
+                category: item.category,
+            };
+            setCart([...cart, product])
         }
-    })
-    setCart(newCart)
-}else{
-   const product = {
-            id: item.id,
-            nameproduct: item.nameproduct,
-            price: item.price,
-            quantity: quantity,
-            description: item.description,
-            img: item.img,
-            stock: item.stock,
-            category: item.category,
-        };
-        setCart([...cart,product])
-    }};
+    };
 
-  const clear = () => {
-    setCart([]);
-  };
+    const clear = () => {
+        setCart([]);
+    };
 
-const removeItem = (productId) => {
-    setCart(cart.filter((product) => product.id !== productId))
-};
+    const removeItem = (productId) => {
+        setCart(cart.filter((product) => product.id !== productId))
+    };
 
-const isInCart = (productId) => {
-    if(cart.find((product) => product.id === productId)){
-        return true;
-    }else {
-        return false;
+    const isInCart = (productId) => {
+        if (cart.find((product) => product.id === productId)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-}
 
-const updateItem= (productId , newQuantity)=> {
-    const newCart = cart.map((product)=>{
-        if(productId === product.id){
-            return {
-                ...product,
-                quantity: newQuantity
+    const updateItem = (productId, newQuantity) => {
+        const newCart = cart.map((product) => {
+            if (productId === product.id) {
+                return {
+                    ...product,
+                    quantity: newQuantity
+                }
+            } else {
+                return product
             }
-        }else {
-            return product
-        }
-    })
-    setCart(newCart);
-};
+        })
+        setCart(newCart);
+    };
 
-    return( 
-    <CartContext.Provider value={{cart, addItem , clear ,removeItem ,total , setCart, updateItem }}>{children}</CartContext.Provider>);
+    return (
+        <CartContext.Provider value={{ cart, addItem, clear, removeItem, total, setCart, updateItem }}>{children}</CartContext.Provider>);
 };
 
 export default CartProvider;
