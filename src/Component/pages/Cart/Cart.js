@@ -49,7 +49,7 @@ import ItemCart from "./ItemCart";
   })
   .then((response) => {
     console.log(response.id);
-    alert(`Muchas gracias por tu compra, bajo el numero de orden, ID: ${response.id}`);
+    alert(`Compra concretada, bajo el numero de orden, ID: ${response.id}`);
     updateStocks(db);
   })
 
@@ -64,7 +64,7 @@ const updateStocks = (db) => {
       stock: product.stock - product.quantity,
   })
   .then(()=>{
-    alert ('El stock a sido actualizado');
+    alert ('Muchas Gracias por su compra !!')
   } )
   .catch((error)=> console.log (error))
   })
@@ -110,7 +110,7 @@ const ingrestext =(event)=> {
       ))}
   
       {cart.length  >0 && <><div className="formcompra">
-        <h1> TOTAL: $ {total}</h1>
+        <h1 className="textototal"> TOTAL: $ {total}</h1>
 
         <div className="contact">
           <form className="contact__form">
