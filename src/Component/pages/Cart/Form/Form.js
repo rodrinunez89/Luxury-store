@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc, getFirestore, doc, updateDoc } from "firebase/firestore";
 import { CartContext } from '../../../context/CartContext';
-
+import Swal from "sweetalert2"
 
 export const Form = () => {
 
@@ -47,8 +47,10 @@ export const Form = () => {
             }),
             total: total,
         }).then((response) => {
-        
-            alert(`Compra concretada, bajo el numero de orden, ID: ${response.id}`);
+            Swal.fire({
+                title: `Compra concretada, bajo el numero de orden, ID: ${response.id}`,
+                timer: 2500,}
+              );
             updateStocks(db);
         }).catch((error) => console.log(error));
     };
@@ -61,9 +63,7 @@ export const Form = () => {
             updateDoc(querySnapshot, {
                 stock: product.stock - product.quantity,
             })
-                .then(() => {
-                    alert('Muchas Gracias por su compra !!')
-                })
+                .then((respone) => {})
                 .catch((error) => console.log(error))
         })
     };
