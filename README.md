@@ -2,6 +2,9 @@
 
 ![Tienda](./public/img/tiendafull.gif)
 
+![Tienda](luxury-compra.gif)
+
+
 # Luxury Store
 
 # Librerias que fueron utilizadas
@@ -83,4 +86,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-![Tienda](luxury-compra.gif)
