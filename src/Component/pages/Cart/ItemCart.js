@@ -16,9 +16,9 @@ useEffect (()=> {
     <>
         <h2>{product.nameproduct}</h2>
             <p>{product.description}</p>
-            <p>Precio Unitario: {product.price}</p>
+            <p>Precio Unitario: $ {product.price}</p>
             <ItemCount count={quantity} setCount={setQuantity} />
-            <p>Subtotal:  {product.price * product.quantity}</p>
+            <p>Subtotal: $ {product.price * product.quantity}</p>
             <img className="listproductbuy-img" src={`/img/${product.img}`}  alt={product.nameproduct}></img>
             
     </>
