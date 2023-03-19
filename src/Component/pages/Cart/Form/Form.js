@@ -14,16 +14,12 @@ export const Form = () => {
         email2: '' 
     });
     
-    const setValue = useEffect((name, value) => {
-        return () => {
-           
-        };
-      });
+
 
     const [disabled, setdisabled] = useState('disabled');
     const navigate = useNavigate();
 
-    const { cart, clear, removeItem, total } = useContext(CartContext);
+    const { cart, clear, total } = useContext(CartContext);
 
     const createOrder = (event) => {
         if(disabled==='disabled') return false
@@ -48,8 +44,16 @@ export const Form = () => {
             total: total,
         }).then((response) => {
             Swal.fire({
+                icon: "success",
                 title: `Compra concretada, bajo el numero de orden, ID: ${response.id}`,
-                timer: 2500,}
+                timer: 3500,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                  },
+                  hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                  }
+            }
               );
             updateStocks(db);
         }).catch((error) => console.log(error));

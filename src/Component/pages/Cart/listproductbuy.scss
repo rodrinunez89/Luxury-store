@@ -83,16 +83,16 @@ background-color: gray;
 }
 
 .contact__form{
-     width: 100%;
-    margin: 10px;
+    width: 100%;
+    padding: 10px;
     display: flex;
-    gap: 30px;
+    gap: 10px;
+    height: 100px;
     align-items: center;
-    border: 1px solid #ccc;
+    border: 3px solid #ccc;
     border-radius: 5px;
     background-color: gray;
     justify-content: center;
-
 }
 
   input[type="text"], input[type="email"],input[type="tel"],textarea {

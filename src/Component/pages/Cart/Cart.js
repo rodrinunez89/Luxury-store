@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import './listproductbuy.scss';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc, getFirestore, doc, updateDoc } from "firebase/firestore";
+
 import ItemCart from "./ItemCart";
 import { InfoCard } from "./InfoCard/InfoCard";
 import { Form } from "./Form/Form";
@@ -11,7 +11,7 @@ import { Form } from "./Form/Form";
 
 
 const Cart = () => {
-  const { cart, clear, removeItem, total } = useContext(CartContext);
+  const { cart, removeItem } = useContext(CartContext);
   const navigate = useNavigate();
   return (
     <div className="Cart">
