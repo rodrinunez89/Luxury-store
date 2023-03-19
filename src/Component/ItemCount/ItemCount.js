@@ -8,7 +8,7 @@ const ItemCount = ({count , setCount }) => {
     setCount (count + 1);
      };
     const restar = () => {
-        if(count === 0) {
+        if(count === 1) {
             return;
         }
         setCount(count - 1);
