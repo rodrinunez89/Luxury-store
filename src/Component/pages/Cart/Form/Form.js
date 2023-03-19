@@ -53,9 +53,10 @@ export const Form = () => {
                   hideClass: {
                     popup: 'animate__animated animate__fadeOutUp'
                   }
-            }
+                 }
               );
             updateStocks(db);
+            clear(); 
         }).catch((error) => console.log(error));
     };
 
@@ -99,9 +100,9 @@ export const Form = () => {
                     <form className="contact__form">
 
                         <input type="text" name='name' placeholder="Su Nombre" value={formValue.name} onChange={handleChange} />
+                        <input type="tel" name='phone' placeholder="Teléfono" value={formValue.phone} onChange={handleChange} />
                         <input type="email" name='email' placeholder="Su Email" value={formValue.email} onChange={handleChange} />
                         <input type="email" name='email2' placeholder="Repetir Email" value={formValue.email2} onChange={handleChange} />
-                        <input type="tel" name='phone' placeholder="Teléfono" value={formValue.phone} onChange={handleChange} />
                         <Button className={"botones btn-send " + disabled} variant="primary" onClick={createOrder}>Completar Compra</Button>
 
                     </form>
